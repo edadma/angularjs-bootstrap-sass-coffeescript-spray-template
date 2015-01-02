@@ -40,19 +40,19 @@ trait MyService extends HttpService {
 	
   val myRoute =
 	pathPrefix("css") {
-		get {
-			getFromResourceDirectory("resources/public")
-		}
+		getFromResourceDirectory("resources/public")
 	} ~
 	pathPrefix("js") {
-		get {
-			getFromResourceDirectory("public/js")
-		}
+		getFromResourceDirectory("public")
+	} ~
+	pathSuffix( ".*html"r ) { f =>
+		getFromResource( "public/" + f )
+	} ~
+	pathPrefix("coffee") {
+		getFromResourceDirectory("public/js")
 	} ~
 	pathPrefix("webjars") {
-		get {
-			getFromResourceDirectory("META-INF/resources/webjars")
-		}
+		getFromResourceDirectory("META-INF/resources/webjars")
 	} ~
     path( "" ) {
 		getFromResource( "public/index.html" )
