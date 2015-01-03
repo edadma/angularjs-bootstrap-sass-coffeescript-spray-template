@@ -20,7 +20,7 @@
 		<link href="css/app.css" rel="stylesheet">
 		<script src="coffee/app.js"></script>
 	</head>
-	<body>
+	<body ng-controller='bodyCtrl'>
 		
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -35,9 +35,9 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#/">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li ng-class="{active: $route.current.activetab == 'home'}"><a href="#/">Home</a></li>
+					<li ng-class="{active: $route.current.activetab == 'about'}"><a href="#about">About</a></li>
+					<li ng-class="{active: $route.current.activetab == 'contact'}"><a href="#contact">Contact</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
