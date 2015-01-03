@@ -45,8 +45,8 @@ trait MyService extends HttpService {
 	pathPrefix("js") {
 		getFromResourceDirectory("public")
 	} ~
-	pathSuffix( ".*html"r ) { f =>
-		getFromResource( "public/" + f )
+	pathSuffixTest( ".*html"r ) { _ =>
+		getFromResourceDirectory( "public" )
 	} ~
 	pathPrefix("coffee") {
 		getFromResourceDirectory("public/js")
