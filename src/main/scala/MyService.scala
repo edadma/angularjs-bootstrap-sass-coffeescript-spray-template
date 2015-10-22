@@ -1,4 +1,4 @@
-package com.example
+package xyz.hyperreal.spraytemplate
 
 import akka.actor.Actor
 import spray.routing._

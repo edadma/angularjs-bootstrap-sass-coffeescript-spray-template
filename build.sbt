@@ -1,12 +1,12 @@
-name          := "NAME"
+name          := "angularjs-bootstrap-sass-coffeescript-spray-template"
 
 version       := "0.1"
 
-organization  := "ca.hyperreal"
+organization  := "xyz.hyperreal"
 
 scalaVersion  := "2.11.7"
 
-scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
+scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-language:postfixOps", "-encoding", "utf8")
 
 resolvers += "Hyperreal Repository" at "https://dl.bintray.com/edadma/maven"
 
@@ -31,12 +31,24 @@ libraryDependencies ++= Seq(
 
 libraryDependencies ++= Seq(
 	"org.webjars" % "bootstrap" % "3.3.5",
-	"org.webjars" % "angularjs" % "1.4.7"
+	"org.webjars" % "angularjs" % "1.4.7",
+	"org.webjars" % "nervgh-angular-file-upload" % "2.1.1"
 	)
 
-//mainClass in assembly := Some( "ca.hyperreal.PACKAGE.Boot" )
+libraryDependencies ++= Seq(
+	"com.typesafe.slick" %% "slick" % "3.0.3",
+	"com.typesafe.slick" %% "slick-codegen" % "3.0.3",
+	"com.h2database" % "h2" % "1.4.188",
+	"joda-time" % "joda-time" % "2.7",
+	"org.joda" % "joda-convert" % "1.7",
+	"com.github.tototoshi" %% "slick-joda-mapper" % "2.0.0"
+	)
 
-jarName in assembly := name.value + "-" + version.value + ".jar"
+mainClass in (Compile, run) := Some( "xyz.hyperreal.spraytemplate.Main" )
+
+mainClass in assembly := Some( "xyz.hyperreal.spraytemplate.Main" )
+
+assemblyJarName in assembly := name.value + "-" + version.value + ".jar"
 
 Revolver.settings
 
@@ -68,17 +80,17 @@ pomIncludeRepository := { _ => false }
 
 licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT"))
 
-homepage := Some(url("https://github.com/edadma/NAME"))
+homepage := Some(url("https://github.com/edadma/" + name.value))
 
 pomExtra := (
   <scm>
-    <url>git@github.com:edadma/NAME.git</url>
-    <connection>scm:git:git@github.com:edadma/NAME.git</connection>
+    <url>git@github.com:edadma/{name.value}.git</url>
+    <connection>scm:git:git@github.com:edadma/{name.value}.git</connection>
   </scm>
   <developers>
     <developer>
       <id>edadma</id>
       <name>Edward A. Maxedon, Sr.</name>
-      <url>http://hyperreal.ca</url>
+      <url>http://hyperreal.xyz</url>
     </developer>
   </developers>)
