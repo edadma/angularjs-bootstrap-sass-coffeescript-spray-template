@@ -4,21 +4,19 @@ version       := "0.1"
 
 organization  := "ca.hyperreal"
 
-scalaVersion  := "2.11.4"
+scalaVersion  := "2.11.7"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
-resolvers += "Hyperreal Repository" at "http://hyperreal.ca/maven2"
-
-libraryDependencies += "ca.hyperreal" %% "__markdown__" % "0.2"
+resolvers += "Hyperreal Repository" at "https://dl.bintray.com/edadma/maven"
 
 libraryDependencies ++= {
-	val akkaV = "2.3.8"
-	val sprayV = "1.3.2"
+	val akkaV = "2.3.12"
+	val sprayV = "1.3.3"
 	Seq(
 	"io.spray"            %%  "spray-can"     % sprayV,
 	"io.spray"            %%  "spray-routing" % sprayV,
-	"io.spray"            %%  "spray-json"    % "1.3.1",
+	"io.spray"            %%  "spray-json"    % "1.3.2",
 	"io.spray"            %%  "spray-testkit" % sprayV  % "test",
 	"com.typesafe.akka"   %%  "akka-actor"    % akkaV,
 	"com.typesafe.akka"   %%  "akka-testkit"  % akkaV   % "test",
@@ -27,17 +25,13 @@ libraryDependencies ++= {
 }
 
 libraryDependencies ++= Seq(
-//	"com.github.mauricio" %% "postgresql-async" % "0.2.15",
-	"org.mongodb" %% "casbah" % "2.7.4",
 	"org.slf4j" % "slf4j-api" % "1.7.7",
 	"org.slf4j" % "slf4j-simple" % "1.7.7"
 	)
 
 libraryDependencies ++= Seq(
-	"org.webjars" % "bootstrap" % "3.3.1",
-//	"org.webjars" % "font-awesome" % "4.2.0",
-	"org.webjars" % "angularjs" % "1.3.8",
-	"org.webjars" % "highlightjs" % "8.4"
+	"org.webjars" % "bootstrap" % "3.3.5",
+	"org.webjars" % "angularjs" % "1.4.7"
 	)
 
 //mainClass in assembly := Some( "ca.hyperreal.PACKAGE.Boot" )
@@ -48,15 +42,15 @@ Revolver.settings
 
 //lazy val root = (project in file(".")).enablePlugins(SbtTwirl)
 
-seq(sassSettings : _*)
 
-//(resourceManaged in (Compile, SassKeys.sass)) <<= (crossTarget in Compile)(_ / "classes")
+seq(sassSettings : _*)
 
 (resourceGenerators in Compile) <+= (SassKeys.sass in Compile)
 
 SassKeys.sassOutputStyle in (Compile, SassKeys.sass) := 'compressed
 
 (compile in Compile) <<= compile in Compile dependsOn (SassKeys.sass in Compile)
+
 
 seq(coffeeSettings: _*)
 
